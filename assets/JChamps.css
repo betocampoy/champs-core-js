@@ -352,3 +352,8 @@
 .champs_notification_center_open {
     cursor: pointer;
 }
+
+.champs-copied {
+    outline: 2px solid #198754;
+    background-color: #e6ffee;
+}

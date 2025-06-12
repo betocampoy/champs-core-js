@@ -147,6 +147,15 @@
         </button>
       </div>
     </div>
+    <div class="box">
+      <h5>Copia texto de elemento com um click</h5>
+
+      <span id="serial-abc">21915274269470051103110311PBA86</span>
+
+      <button class="btn btn-sm btn-outline-secondary" data-champs-copy-from="#serial-abc">
+        <i class="bi bi-clipboard"></i> Copiar Nº de Série
+      </button>
+    </div>
 
     <div class="form-floating mb-3">
       <input type="text" class="form-control grupo_sensivel" id="valorConta" value="R$ 10.000,00" placeholder="Valor da Conta">
@@ -169,6 +178,7 @@
   import DatalistManager from '../src/DatalistManager.js';
   import ZipcodeSearch from '../src/ZipcodeSearch.js';
   import VisibilityToggle from '../src/VisibilityToggle.js';
+  import CopyText from "../src/CopyText.js";
 
   VisibilityToggle.init();
   ZipcodeSearch.init();
@@ -177,6 +187,7 @@
   Loader.initOnNavigation();
   CheckboxGroup.init();
   initAjaxForm();
+  CopyText.init();
 
   document.getElementById('btnShowLoader').addEventListener('click', () => Loader.show());
   document.getElementById('btnHideLoader').addEventListener('click', () => Loader.hide());
