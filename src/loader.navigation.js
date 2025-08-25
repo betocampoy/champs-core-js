@@ -1,4 +1,4 @@
-import Loader from './loader.js';
+import Loader from './Loader.js';
 
 const NavLoader = (() => {
     let overlayVisible = false;
