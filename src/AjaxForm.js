@@ -12,6 +12,9 @@ export async function handleAjaxSend(el) {
     const route = getRoute(el);
     if (!route) return false;
 
+    const confirmMessage = getConfirm(el);
+    if (!confirmMessage) return false;
+
     const sendForm = getSendForm(el);
     if (!validateUploads(sendForm)) return false;
 
@@ -44,6 +47,14 @@ function getRoute(el) {
         return null;
     }
     return route;
+}
+
+function getConfirm(el) {
+    const confirmMessage = el.dataset.confirm?.toLowerCase() !== '' ? el.dataset.confirm : false;
+    if(confirmMessage){
+        return confirm(confirmMessage);
+    }
+    return true;
 }
 
 function getMethod(el) {
