@@ -71,16 +71,18 @@ function resolveLoaderOptions(btn, formEl, targetEl = null) {
 }
 
 function showLoader(loaderRef) {
-    // permite opt-out: data-ajax-loader="off" em botão OU form
     const { target, opts } = loaderRef;
     if (opts?.ajaxLoader === 'off') return;
 
-    // se o Loader novo estiver disponível, usa attach/showFromEl (melhor UX)
     if (Loader.attach && Loader.showFromEl) {
-        if (target) Loader.attach(target, opts);
-        Loader.showFromEl(target || null);
+        if (target) {
+            Loader.attach(target, opts);
+            Loader.showFromEl(target);
+        } else {
+            // sem target => overlay global
+            Loader.showFromEl(null);
+        }
     } else {
-        // compatibilidade com Loader.show/hide antigos
         Loader.show(target || null, opts || {});
     }
 }
@@ -93,6 +95,7 @@ function hideLoader(loaderRef) {
         Loader.hide(target || null);
     }
 }
+
 
 export async function handleAjaxSend(el, submitter = null) {
     document.querySelector('.modal-backdrop')?.remove();

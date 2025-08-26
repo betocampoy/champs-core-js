@@ -129,6 +129,7 @@ const Loader = (() => {
     // ---------- API declarativa por data-attributes ----------
     // attach: salva opções no elemento (para showFromEl/hideFromEl)
     function attach(el, opts = {}) {
+        if (!el) return;                    // <-- evita null
         state.attached.set(el, {
             template: opts.template ?? el.dataset.loaderTemplate ?? state.currentName,
             mode:
@@ -147,22 +148,20 @@ const Loader = (() => {
     }
 
     function showFromEl(el) {
-        const opts = state.attached.get(el);
-        if (!opts) {
-            // fallback: tenta ler on the fly
-            const o = {
-                template: el.dataset.loaderTemplate ?? state.currentName,
-                mode: el.dataset.loaderMode ?? (el.className.includes('overlay') ? 'overlay' : 'inline'),
-                color: el.dataset.loaderColor ?? null,
-                block: (el.dataset.loaderBlock !== 'false'),
-            };
-            return show(el, o);
+        if (!el) {                          // <-- suporta overlay global
+            return show(null, {});            // usa o template corrente em overlay global
         }
+        const opts = state.attached.get(el) ?? {
+            template: el.dataset?.loaderTemplate ?? state.currentName,
+            mode: el.dataset?.loaderMode ?? (el.className.includes('overlay') ? 'overlay' : 'inline'),
+            color: el.dataset?.loaderColor ?? null,
+            block: (el.dataset?.loaderBlock !== 'false'),
+        };
         return show(el, opts);
-        // (não salvamos referências do nó; o hide busca por seletor .champs-loader(.overlay))
     }
 
     function hideFromEl(el) {
+        if (!el) return hide(null);         // <-- suporta overlay global
         return hide(el);
     }
 
