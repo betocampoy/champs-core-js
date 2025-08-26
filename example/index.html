@@ -83,7 +83,147 @@
     </div>
   </div>
 
-  <!-- (demais seções permanecem iguais...) -->
+  <div class="box">
+    <h5>Champs Core - AJAX por Classe</h5>
+    <form name="form_ajax" action="https://httpbin.org/post" method="POST">
+      <input type="text" name="nome" placeholder="Seu nome" class="form-control mb-2">
+      <button type="button"
+              class="btn btn-success champs_send_post_on_click"
+              data-route="https://httpbin.org/post"
+              data-with_inputs="true"
+              data-target_form_name="form_ajax"
+              data-type="success"
+              data-message="Enviado com sucesso!">
+        Enviar via AJAX (classe)
+      </button>
+    </form>
+  </div>
+
+  <div class="box">
+    <label class="form-check">
+      <input type="checkbox" class="form-check-input champs_checkbox_parent_select"
+             data-group="grupo1"
+             data-counter_element="#contador"
+             data-total_element="#soma">
+      <span class="form-check-label">Selecionar todos</span>
+    </label>
+
+    <div class="ms-3">
+      <label class="form-check"><input type="checkbox" class="form-check-input champs_checkbox_child_select" data-group="grupo1" data-counter_element="#contador" data-total_element="#soma" data-value_to_sum="10"> Item 1 (10)</label><br>
+      <label class="form-check"><input type="checkbox" class="form-check-input champs_checkbox_child_select" data-group="grupo1" data-counter_element="#contador" data-total_element="#soma" data-value_to_sum="20"> Item 2 (20)</label><br>
+      <label class="form-check"><input type="checkbox" class="form-check-input champs_checkbox_child_select" data-group="grupo1" data-counter_element="#contador" data-total_element="#soma" data-value_to_sum="30"> Item 3 (30)</label>
+    </div>
+
+    <p class="mt-2">Total selecionados: <span id="contador">0</span></p>
+    <p>Soma total: <span id="soma">0</span></p>
+  </div>
+
+  <div class="box">
+    <label for="estado" class="form-label">Estado</label>
+    <select id="estado"
+            class="form-select"
+            data-group="local"
+            data-group_index="1"
+            data-child_selector="#cidade"
+            data-element_id="estado">
+      <option value="" disabled selected>Selecione um estado</option>
+      <option value="SP">São Paulo</option>
+      <option value="RJ">Rio de Janeiro</option>
+    </select>
+  </div>
+
+  <div class="box">
+    <label for="cidade" class="form-label">Cidade</label>
+    <select id="cidade"
+            class="form-select"
+            data-group="local"
+            data-group_index="2">
+      <option value="" disabled selected>Selecione o estado primeiro</option>
+    </select>
+  </div>
+
+  <div class="box">
+    <h5>Formulário de Edição</h5>
+    <input type="text" class="form-control nome mb-2" placeholder="Nome">
+    <input type="email" class="form-control email mb-2" placeholder="Email">
+    <select class="form-select nivel mb-2">
+      <option value="">Selecione o nível</option>
+      <option value="admin">Administrador</option>
+      <option value="user">Usuário</option>
+    </select>
+    <button id="btnPreencherForm" class="btn btn-warning">Preencher Dados (formfiller)</button>
+  </div>
+
+  <div class="box">
+    <h5>Busca com Datalist</h5>
+    <input list="nomes" class="form-control datalist_input_on_change mb-2" placeholder="Digite um nome" data-datalist_clear_after_change="true">
+
+    <datalist id="nomes">
+      <option id="1" data-value="1" value="Beto">
+      <option id="2" data-value="2" value="Pedro">
+      <option id="3" data-value="3" value="Cadu">
+    </datalist>
+
+    <select class="form-select datalist_target_element_class">
+      <option value="">ID selecionado aparecerá aqui</option>
+      <option value="1">Beto</option>
+      <option value="2">Pedro</option>
+      <option value="3">Cadu</option>
+    </select>
+  </div>
+
+  <div class="box">
+    <h5>Consulta de CEP (ViaCEP)</h5>
+    <input type="text" class="form-control champs_zipcode_search mb-2" placeholder="Digite o CEP (ex: 01001000)">
+
+    <input type="text" class="form-control champs_zipcode_search_street mb-2" placeholder="Rua">
+    <input type="text" class="form-control champs_zipcode_search_complement mb-2" placeholder="Complemento do endereço">
+    <input type="text" class="form-control champs_zipcode_search_neighborhood mb-2" placeholder="Bairro">
+    <input type="text" class="form-control champs_zipcode_search_city mb-2" placeholder="Cidade">
+    <input type="text" class="form-control champs_zipcode_search_state mb-2" placeholder="UF">
+    <input type="text" class="form-control champs_zipcode_search_state_name mb-2" placeholder="Estado">
+    <input type="text" class="form-control champs_zipcode_search_state_region mb-2" placeholder="Região">
+    <input type="text" class="form-control champs_zipcode_search_state_ddd mb-2" placeholder="DDD">
+
+    <div class="text-danger champs_zipcode_search_error fw-bold mt-2"></div>
+    <pre class="bg-light p-3 border mt-3 champs_zipcode_search_result_json" style="white-space:pre-wrap;"></pre>
+
+  </div>
+
+  <div class="box">
+    <h5>Visualização Segura com Layout BS5</h5>
+
+    <div class="mb-3">
+      <label for="senhaConta" class="form-label">Senha</label>
+      <div class="input-group">
+        <input type="password" class="form-control grupo_sensivel" id="senhaConta" value="Segredo123">
+        <button class="btn btn-outline-secondary champs_toggle_visibility"
+                type="button"
+                data-hidden_group="grupo_sensivel"
+                data-icon_show="👁"
+                data-icon_hide="🙈">
+          👁
+        </button>
+      </div>
+    </div>
+    <div class="box">
+      <h5>Copia texto de elemento com um click</h5>
+
+      <span id="serial-abc">21915274269470051103110311PBA86</span>
+
+      <button class="btn btn-sm btn-outline-secondary" data-champs-copy-from="#serial-abc">
+        <i class="bi bi-clipboard"></i> Copiar Nº de Série
+      </button>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control grupo_sensivel" id="valorConta" value="R$ 10.000,00" placeholder="Valor da Conta">
+      <label for="valorConta">Valor da Conta</label>
+    </div>
+  </div>
+
+  <div class="mb-5">
+  </div>
 
 </div>
 
