@@ -1,3 +1,5 @@
+import { initAllPlugins } from './plugins.js';
+
 export default class ModalManager {
     static ensureStructure() {
         if (!document.getElementById('champs_modal')) {
